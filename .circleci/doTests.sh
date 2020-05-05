@@ -93,6 +93,7 @@ do
     cd ../../
     git clone git@bitbucket.org:vrai-labs/com-root.git
     cd com-root
+    mkdir sqlite_db
     pluginX=$(cut -d'.' -f1 <<<"$pluginVersion")
     pluginY=$(cut -d'.' -f2 <<<"$pluginVersion")
     echo -e "core,$coreVersionX2\nplugin-interface,$piVersion\nsqlite-plugin,$pluginX.$pluginY" > modules.txt
