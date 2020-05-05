@@ -103,7 +103,7 @@ public class ConfigTest {
         assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));
 
     }
-
+    
     @Test
     public void testSqliteDatabaseLocation() throws Exception {
         String[] args = {"../", "DEV"};
@@ -114,8 +114,8 @@ public class ConfigTest {
         ProcessState.EventAndException e = process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.INIT_FAILURE);
         assertNotNull(e);
         TestCase.assertEquals(e.exception.getMessage(),
-                "'sqlite_database_folder_location' is not set in the config.yaml file. Please set this value and " +
-                        "restart SuperTokens");
+                "The database location set in 'sqlite_database_folder_location' does not exist, Please set a valid " +
+                        "location and restart SuperTokens");
 
         process.kill();
         assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));

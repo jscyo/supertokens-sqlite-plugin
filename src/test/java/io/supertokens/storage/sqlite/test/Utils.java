@@ -18,8 +18,6 @@
 package io.supertokens.storage.sqlite.test;
 
 import io.supertokens.Main;
-import io.supertokens.backendAPI.LicenseKeyLatest;
-import io.supertokens.httpRequest.HttpRequestMocking;
 import io.supertokens.pluginInterface.PluginInterfaceTesting;
 import io.supertokens.storage.sqlite.Start;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
@@ -30,10 +28,6 @@ import org.mockito.Mockito;
 
 import javax.net.ssl.HttpsURLConnection;
 import java.io.*;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.net.URLStreamHandler;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
@@ -120,21 +114,6 @@ abstract class Utils extends Mockito {
                 public void write(int b) {
                 }
             });
-
-            HttpRequestMocking.getInstance(process.getProcess()).setMockURL(
-                    LicenseKeyLatest.REQUEST_ID, new HttpRequestMocking.URLGetter() {
-
-                        @Override
-                        public URL getUrl(String url) throws MalformedURLException {
-                            URLStreamHandler stubURLStreamHandler = new URLStreamHandler() {
-                                @Override
-                                protected URLConnection openConnection(URL u) {
-                                    return mockCon;
-                                }
-                            };
-                            return new URL(null, url, stubURLStreamHandler);
-                        }
-                    });
         } catch (Exception ignored) {
 
         }

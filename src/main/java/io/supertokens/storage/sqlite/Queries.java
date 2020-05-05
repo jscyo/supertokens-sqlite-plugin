@@ -358,7 +358,7 @@ public class Queries {
             for (int i = 0; i < sessionHandles.length; i++) {
                 pst.setString(i + 1, sessionHandles[i]);
             }
-            return pst.executeUpdate() == 1 ? 1 : 0;
+            return pst.executeUpdate();
         }
     }
 
@@ -409,7 +409,7 @@ public class Queries {
             throw new SQLException("sessionData and jwtPayload are null when updating session info");
         }
         String QUERY = "UPDATE " + Config.getConfig(start).getSessionInfoTable() + " SET";
-        QUERY += "last_updated_sign = ?";
+        QUERY += " last_updated_sign = ?";
 
         if (sessionData != null) {
             QUERY += ", session_data = ?";

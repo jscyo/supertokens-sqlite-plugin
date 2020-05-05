@@ -86,7 +86,7 @@ public class SQLiteConfig {
                             " SuperTokens");
         }
 
-        if (getDatabaseLocation().startsWith("~")) {
+        if (getDatabaseLocation().contains("~")) {
             throw new QuitProgramFromPluginException(
                     "The database location set in 'sqlite_database_folder_location' cannot begin with '~', Please set" +
                             " a " +

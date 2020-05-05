@@ -254,15 +254,7 @@ public class Start extends NoSQLStorage_1 {
             throw new StorageQueryException(e);
         }
     }
-
-    @Override
-    public boolean isSessionBlacklisted(String sessionHandle) throws StorageQueryException {
-        try {
-            return Queries.isSessionBlacklisted(this, sessionHandle);
-        } catch (SQLException e) {
-            throw new StorageQueryException(e);
-        }
-    }
+    
 
     @Override
     public int getNumberOfSessions() throws StorageQueryException {
