@@ -48,7 +48,7 @@ class ConnectionPool extends ResourceDistributor.SingletonResource {
         config.addDataSourceProperty("prepStmtCacheSize", "250");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         // TODO: set maxLifetimeValue to lesser than 10 mins so that the following error doesnt happen:
-        // io.supertokens.storage.postgresql.HikariLoggingAppender.doAppend(HikariLoggingAppender.java:117) |
+        // io.supertokens.storage.sqlite.HikariLoggingAppender.doAppend(HikariLoggingAppender.java:117) |
         // SuperTokens
         // - Failed to validate connection org.mariadb.jdbc.MariaDbConnection@79af83ae (Connection.setNetworkTimeout
         // cannot be called on a closed connection). Possibly consider using a shorter maxLifetime value.
