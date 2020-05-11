@@ -327,13 +327,11 @@ public class Start extends NoSQLStorage_1 {
 
     @Override
     public SQLStorage.SessionInfo getSession(String sessionHandle) throws StorageQueryException {
-
         try {
             return Queries.getSession(this, sessionHandle);
         } catch (SQLException e) {
             throw new StorageQueryException(e);
         }
-
     }
 
     @Override
