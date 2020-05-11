@@ -254,7 +254,7 @@ public class Start extends NoSQLStorage_1 {
             throw new StorageQueryException(e);
         }
     }
-    
+
 
     @Override
     public int getNumberOfSessions() throws StorageQueryException {
@@ -325,7 +325,6 @@ public class Start extends NoSQLStorage_1 {
         this.enabled = enabled;
     }
 
-    ///////////////////////////////////////////////
     @Override
     public SQLStorage.SessionInfo getSession(String sessionHandle) throws StorageQueryException {
 
