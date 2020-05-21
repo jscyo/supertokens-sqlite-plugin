@@ -86,7 +86,7 @@ public class ConfigTest {
 
     @Test
     public void testThatInvalidConfigThrowsRightError() throws Exception {
-        String[] args = {"../", "DEV"};
+        String[] args = {"../", "PRODUCTION"};
 
 
         //sqlite_connection_pool_size is not set properly in the config file
@@ -106,7 +106,7 @@ public class ConfigTest {
 
     @Test
     public void testSqliteDatabaseLocation() throws Exception {
-        String[] args = {"../", "DEV"};
+        String[] args = {"../", "PRODUCTION"};
 
         Utils.commentConfigValue("sqlite_database_folder_location");
 

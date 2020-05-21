@@ -384,4 +384,9 @@ public class Start extends NoSQLStorage_1 {
         }
     }
 
+    @Override
+    public boolean canBeUsed(String configFilePath) {
+        return Config.canBeUsed(this, configFilePath);
+    }
+
 }
