@@ -41,7 +41,6 @@ public class Start extends NoSQLStorage_1 {
     private String processId;
     private HikariLoggingAppender appender = new HikariLoggingAppender(this);
     private static final String APP_ID_KEY_NAME = "app_id";
-    private static final String USER_DEV_PRODUCTION_MODE_NAME = "user_dev_production_mode";
     private static final String ACCESS_TOKEN_SIGNING_KEY_NAME = "access_token_signing_key";
     private static final String REFRESH_TOKEN_KEY_NAME = "refresh_token_key";
     public static boolean isTesting = false;
@@ -142,30 +141,6 @@ public class Start extends NoSQLStorage_1 {
             throw new StorageQueryException(e);
         }
     }
-
-    @Override
-    public String getUserDevProductionMode() throws StorageQueryException {
-        try {
-            KeyValueInfo result = Queries.getKeyValue(this, USER_DEV_PRODUCTION_MODE_NAME);
-            if (result != null) {
-                return result.value;
-            }
-            return null;
-        } catch (SQLException e) {
-            throw new StorageQueryException(e);
-        }
-    }
-
-    @Override
-    public void setUserDevProductionMode(String mode) throws StorageQueryException {
-        try {
-            KeyValueInfo keyInfo = new KeyValueInfo(mode, System.currentTimeMillis());
-            Queries.setKeyValue(this, USER_DEV_PRODUCTION_MODE_NAME, keyInfo);
-        } catch (SQLException e) {
-            throw new StorageQueryException(e);
-        }
-    }
-
 
     @Override
     public KeyValueInfoWithLastUpdated getAccessTokenSigningKey_Transaction() throws StorageQueryException {
@@ -386,7 +361,7 @@ public class Start extends NoSQLStorage_1 {
 
     @Override
     public boolean canBeUsed(String configFilePath) {
-        return Config.canBeUsed(this, configFilePath);
+        return Config.canBeUsed(configFilePath);
     }
 
 }

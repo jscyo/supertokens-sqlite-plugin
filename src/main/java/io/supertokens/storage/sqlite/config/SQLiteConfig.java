@@ -71,6 +71,9 @@ public class SQLiteConfig {
     }
 
     public String getDatabaseLocation() {
+        if (sqlite_database_folder_location == null) {
+            return null;
+        }
         if (PluginInterfaceTesting.isTesting) {
             return Utils.normaliseLocationPath("../" + sqlite_database_folder_location);
         }
@@ -85,7 +88,7 @@ public class SQLiteConfig {
                             "restart" +
                             " SuperTokens");
         }
-        
+
 
         if (getDatabaseLocation().contains("~/") || getDatabaseLocation().contains("/~")) {
             throw new QuitProgramFromPluginException(

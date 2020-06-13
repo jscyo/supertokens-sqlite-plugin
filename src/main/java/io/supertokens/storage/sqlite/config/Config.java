@@ -69,10 +69,11 @@ public class Config extends ResourceDistributor.SingletonResource {
         return config;
     }
 
-    public static boolean canBeUsed(Start start, String configFilePath) {
+    public static boolean canBeUsed(String configFilePath) {
         try {
-            new Config(start, configFilePath);
-            return true;
+            final ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
+            SQLiteConfig config = mapper.readValue(new File(configFilePath), SQLiteConfig.class);
+            return config.getDatabaseLocation() != null;
         } catch (Exception e) {
             return false;
         }

@@ -69,7 +69,7 @@ public class InMemoryDBTest {
         {
             Utils.commentConfigValue("sqlite_database_folder_location");
 
-            String[] args = {"../", "DEV"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -92,7 +92,7 @@ public class InMemoryDBTest {
         }
 
         {
-            String[] args = {"../", "DEV"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -110,7 +110,7 @@ public class InMemoryDBTest {
             UnsupportedEncodingException, InvalidKeySpecException, IllegalBlockSizeException,
             StorageTransactionLogicException {
         {
-            String[] args = {"../", "DEV"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -132,7 +132,7 @@ public class InMemoryDBTest {
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));
         }
         {
-            String[] args = {"../", "DEV"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -150,7 +150,7 @@ public class InMemoryDBTest {
             UnsupportedEncodingException, InvalidKeySpecException, IllegalBlockSizeException,
             StorageTransactionLogicException {
         {
-            String[] args = {"../", "PRODUCTION"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -172,7 +172,7 @@ public class InMemoryDBTest {
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));
         }
         {
-            String[] args = {"../", "DEV"};
+            String[] args = {"../"};
             TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
             assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STARTED));
 
@@ -184,25 +184,8 @@ public class InMemoryDBTest {
     }
 
     @Test
-    public void checkThatErrorIsThrownIfIncorrectConfigInProduction() throws IOException, InterruptedException {
-        String[] args = {"../", "PRODUCTION"};
-
-        Utils.commentConfigValue("sqlite_database_folder_location");
-
-        TestingProcessManager.TestingProcess process = TestingProcessManager.start(args);
-        ProcessState.EventAndException e = process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.INIT_FAILURE);
-        assertNotNull(e);
-        TestCase.assertEquals(e.exception.getMessage(),
-                "The database location set in 'sqlite_database_folder_location' does not exist, Please set a valid " +
-                        "location and restart SuperTokens");
-
-        process.kill();
-        assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));
-    }
-
-    @Test
     public void ifForceNoInMemoryThenDevShouldThrowError() throws IOException, InterruptedException {
-        String[] args = {"../", "DEV", "forceNoInMemDB=true"};
+        String[] args = {"../", "forceNoInMemDB=true"};
 
         Utils.commentConfigValue("sqlite_database_folder_location");
 
@@ -210,8 +193,8 @@ public class InMemoryDBTest {
         ProcessState.EventAndException e = process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.INIT_FAILURE);
         assertNotNull(e);
         TestCase.assertEquals(e.exception.getMessage(),
-                "The database location set in 'sqlite_database_folder_location' does not exist, Please set a valid " +
-                        "location and restart SuperTokens");
+                "'sqlite_database_folder_location' is not set in the config.yaml file. Please set this value and " +
+                        "restart SuperTokens");
 
         process.kill();
         assertNotNull(process.checkOrWaitForEvent(ProcessState.PROCESS_STATE.STOPPED));
