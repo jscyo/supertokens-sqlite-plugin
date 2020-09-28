@@ -27,7 +27,7 @@ We're so excited you're interested in helping with SuperTokens! We are happy to 
    plugin-interface,master
    sqlite-plugin,master,<your github username>
    ```
-4. Run `./loadModules` in the `supertokens-root` directory. This will clone your forked `supertokens-sqlaite-plugin` repo.
+4. Run `./loadModules` in the `supertokens-root` directory. This will clone your forked `supertokens-sqlite-plugin` repo.
 5. Create a directory called `sqlite_db` in the `supertokens-root` directory. This directory is required to run tests with the `sqlite-plugin`
    ```
    mkdir sqlite_db
